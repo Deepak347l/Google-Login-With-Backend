@@ -41,7 +41,7 @@ app.post('/api/login', async (req, res) => {
     }
   } catch (error) {
     // Handle errors.
-    res.status(500).send('Server error');
+    res.status(500).send('Server error:'+error);
   }
 });
 
@@ -50,7 +50,12 @@ function generateSessionToken(userId) {
   // Generate a session token for the user.
   // You can use a library like jsonwebtoken (JWT) to create a secure token.
   // Return the token.
-
+ // Define the payload (claims) for the JWT.
+ const payload = {
+  sub: userId,               // Subject (user ID)
+  iat: Math.floor(Date.now() / 1000),   // Issued at (current time in seconds)
+  exp: Math.floor(Date.now() / 1000) + 3600,  // Expiration time (1 hour from now)
+};
 // Sign the JWT using your secret key.
 const token = jwt.sign(userId, jwtSecret, { algorithm: 'HS256' });
 
