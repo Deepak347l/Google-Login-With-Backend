@@ -9,10 +9,15 @@ const userRoutes = require('./routes/user');
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb+srv://contactdevloperdk347:qn2qn1pvSTfvEfn7@testapi.vees45d.mongodb.net/TestApi?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://contactdevloperdk347:qn2qn1pvSTfvEfn7@testapi.vees45d.mongodb.net/TestApi?retryWrites=true&w=majority', 
+{
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+  useCreateIndex: true},
+  () => {
+    console.log('Connected to MongoDB');
+  }
+);
 
 app.use(bodyParser.json());
 app.use(session({
