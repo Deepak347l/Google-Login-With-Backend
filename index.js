@@ -33,11 +33,8 @@ app.post('/api/login', async (req, res) => {
       const userId = payload.sub;
       const sessionToken = generateSessionToken(userId);
       // Respond with the session token.
-      res.status(200).json({ sessionToken });
-      return {
-        userId
-        // Include other user information here
-      };
+      res.status(200).json({ sessionToken,userId });
+    
     } else {
       // Authentication failed.
       res.status(401).send('Authentication failed');
