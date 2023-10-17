@@ -8,9 +8,9 @@ const router = express.Router();
 const client = new OAuth2Client('600218617565-oni016ig3jl7c915nf4ntvanj9sscikn.apps.googleusercontent.com');
 
 router.post('/google-signin', async (req, res) => {
+  try {
   const idToken = req.body.idToken;
 
-  try {
     const ticket = await client.verifyIdToken({
       idToken,
       audience: '600218617565-oni016ig3jl7c915nf4ntvanj9sscikn.apps.googleusercontent.com',
